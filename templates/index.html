@@ -6,18 +6,14 @@
         <div class="col">
             <h1>{{ message }}</h1>
             <ul class="list-group">
-                {% for product in products %}
+                {% for product in product_list %}
                 <li class="list-group-item">
                     {% comment %}
                     Esto es un comentario de django
                     {% endcomment %}
                     {# Este es otro comentario #}
                     {{ product.title }}
-                    {% if product.stock %}
-                    <span class="text-success">Disponible</span>
-                    {% else %}
-                    <span class="text-danger">Disponible</span>
-                    {% endif %}
+                    <span class="text-success">{{ product.price }}</span>
                 </li>
                 {% endfor %}
             </ul>

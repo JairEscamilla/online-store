@@ -5,17 +5,15 @@ from django.shortcuts import redirect
 from django.contrib import messages
 from .forms import RegisterForm
 from django.contrib.auth.models import User
-
+from products.models import Product
 
 def index(request):
+    products = Product.objects.all().order_by("-id")
+
     return render(request, "index.html", {
         'message': "Listado de productos",
         'title': 'Productos',
-        'products': [
-            {'title': 'Nueva playera', 'price': 5, 'stock': True}, # Producto
-            {'title': 'Camisa', 'price': 7, 'stock': True}, # Producto
-            {'title': 'Mochila', 'price': 7, 'stock': False} # Producto
-        ]
+        'products': products
     })
 
 def login_view(request):
