@@ -3,6 +3,8 @@ from django.contrib.auth import authenticate
 from django.contrib.auth import login, logout
 from django.shortcuts import redirect
 from django.contrib import messages
+from .forms import RegisterForm
+from django.contrib.auth.models import User
 
 
 def index(request):
@@ -30,11 +32,22 @@ def login_view(request):
             return redirect('index')
         else:
             messages.error(request, "Usuario o contraseña no válidos")
-    return render(request, "users/login.html", {
-
-    })
+    return render(request, "users/login.html", {})
 
 def logout_view(request):
     logout(request)
     messages.success(request, "Sesión cerrada con exitosamente")
     return redirect('login')
+
+def register(request):
+    form = RegisterForm(request.POST or None)
+    if request.method == 'POST' and form.is_valid():
+        user = form.save()
+
+        if user:
+            login(request, user)
+            messages.success(request, "Usuario creado exitosamente")
+            return redirect('index')
+
+    
+    return render(request, "users/register.html", {'form': form})
