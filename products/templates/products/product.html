@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="col">
+        <div class="h1">
+            {{ product.title }}
+        </div>
+        <div class="h5 font-weight-bold">
+            Precio: <span class="text-danger">${{ product.price }}</span>
+        </div>
+        <div>
+            {{ product.description }}
+        </div>
+    </div>
+{% endblock content %}
