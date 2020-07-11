@@ -5,13 +5,8 @@
 {% block content %}
         <div class="col">
             <h4 class="text-center">{{ message }}</h4>
-            <div class="row">
-                {% for product in product_list %}
-                  <div class="col-3 mt-5">
-                      <!--PRODUCT-->
-                      {% include "products/snippets/product.html" %}
-                  </div>
-                {% endfor %}
-            </div>
+            {% include "products/snippets/search.html" %}
+
+            {% include "products/snippets/list.html" %}
         </div>
 {% endblock content %}
