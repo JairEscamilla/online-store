@@ -17,5 +17,8 @@
         <div class="font-weight-bold text-danger">
             {{ product.price | price_format }}
         </div>
+        <div class="mt-2">
+            <a href="{% url 'carts:cart' %}" class="btn btn-info">Ver carrito</a>
+        </div>
     </div>
 {% endblock content %}
