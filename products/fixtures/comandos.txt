@@ -1,0 +1,2 @@
+python3 manage.py dumpdata products.Product --format=json --indent=4 > products/fixtures/products.json
+python3 manage.py loaddata products.json

@@ -4,8 +4,10 @@ from django.contrib.auth import login, logout
 from django.shortcuts import redirect
 from django.contrib import messages
 from .forms import RegisterForm
-from django.contrib.auth.models import User
+#from django.contrib.auth.models import User
 from products.models import Product
+from users.models import User
+
 
 def index(request):
     products = Product.objects.all().order_by("-id")
