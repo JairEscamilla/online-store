@@ -14,9 +14,11 @@
             <li class="nav-item {% if request.path == cart %}active{% endif %}">
                 <a href="{{ cart }}" class="nav-link">Mi carrito <span class="fas fa-shopping-cart"></span> </a>
             </li>
-            <li class="nav-item {% if request.path == sp %}active{% endif %}">
-                <a href="{{ sp }}" class="nav-link">Mis direcciones <span class="fas fa-location-arrow"></span</a>
-            </li>
+            {% if user.is_authenticated %}
+                <li class="nav-item {% if request.path == sp %}active{% endif %}">
+                    <a href="{{ sp }}" class="nav-link">Mis direcciones <span class="fas fa-location-arrow"></span</a>
+                </li>
+            {% endif %}
         </ul>
 
         <ul class="nav navbar-nav ml-auto">

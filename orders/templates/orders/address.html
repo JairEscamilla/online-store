@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block breadcrumb %}
+    {% include "orders/snippets/breadcrumb.html" %}
+{% endblock breadcrumb %}
+
+{% block content %}
+    <div class="col">
+        {% if shipping_address %}
+            <div class="h3">
+                Recoge el pedido en el punto de entrega
+            </div>
+        {% else %}
+            <div class="h3">
+                Registra tu dirección de envío
+            </div>
+            <div>
+                <a href="{% url 'shipping_addresses:create' %}">Nueva dirección de envío</a>
+            </div>
+        {% endif %}
+    </div>
+{% endblock content %}

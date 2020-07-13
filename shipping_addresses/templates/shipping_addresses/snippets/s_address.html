@@ -14,13 +14,14 @@
         </div>
         
         <div class="mt-2">
-            <a href="#" class="btn btn-info">Editar</a>
+            <a href="{% url 'shipping_addresses:editar' address.pk %}" class="btn btn-info">Editar</a>
             {% if address.default %}
                 <div class="text-info">
                     Dirección principal
                 </div> 
             {% else %}
-                <a href="#" class="btn btn-danger">Default</a>
+                <a href="{% url 'shipping_addresses:default' address.pk %}" class="btn btn-warning">Default</a>
+                <a href="{% url 'shipping_addresses:delete' address.pk %}" class="btn btn-danger">Eliminar</a>
             {% endif %}
         </div>
     </div>

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="col">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="h4">
+                ¿Estás seguro de eliminar la dirección?
+            </div>
+            <input type="submit" value="Eliminar" class="btn btn-danger">
+            <a href="{% url 'shipping_addresses:shipping_addresses' %}" class="ml-3">No, regresar</a>
+        </form>
+    </div>
+{% endblock content %}

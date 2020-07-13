@@ -21,3 +21,6 @@ class ShippingAddress(models.Model):
         return '{} - {} - {}'.format(self.city, self.state, self.country)
 
 
+    def update_default(self, default=False):
+        self.default = default 
+        self.save()
