@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="col">
+        <div class="h3">
+            Mis direcciones
+        </div>
+        <a href="{% url 'shipping_addresses:create' %}">Agregar nueva dirección</a>
+    </div>
+{% endblock content %}
