@@ -15,27 +15,38 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for product in cart.products.all %}
-                        <tr>
-                            <th>{{ forloop.counter }}</th>
-                            <th>
-                                {% if product.image %}
-                                    <img src="{{ product.image.url }}" alt="imagen del producto" width="60" height="60">
-                                {% endif %}
-                            </th>
-                            <th>
-                                <a href="{% url 'product' product.slug %}">{{ product.title }}</a>
-                                {% include "snippets/remove.html" %}
-                            </th>
-                            <th>1</th>
-                            <th><span class="font-weight-bold text-danger">{{ product.price | price_format }}</span></th>
-                        </tr>
+                    {% for cp in cart.products_related %}
+                        {% with product=cp.product  %}
+                            <tr>
+                                <th>{{ forloop.counter }}</th>
+                                <th>
+                                    {% if product.image %}
+                                        <img src="{{ product.image.url }}" alt="imagen del producto" width="60" height="60">
+                                    {% endif %}
+                                </th>
+                                <th>
+                                    <a href="{% url 'product' product.slug %}">{{ product.title }}</a>
+                                    {% include "snippets/remove.html" %}
+                                </th>
+                                <th>{{ cp.quantity }}</th>
+                                <th><span class="font-weight-bold text-danger">{{ product.price | price_format }}</span></th>
+                            </tr>
+                        {% endwith %}
                     {% endfor %}
                 </tbody>
             </table>
         </div>
         <div class="col">
-
+            <div class="card">
+                <div class="card-body">
+                    <div class="font-weight-bold">
+                        Subtotal({{ cart.products.count }}): <span class="text-danger">${{ cart.subtotal }}</span>
+                    </div>
+                    <div class="mt-2">
+                        <a href="{% url 'orders:order' %}" class="btn btn-warning">Proceder al pago</a>
+                    </div>
+                </div>
+            </div>
         </div>
     {% else %}
         <div class="col">

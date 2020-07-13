@@ -4,6 +4,7 @@ from .utils import get_or_create_cart
 from products.models import Product
 from django.shortcuts import redirect
 from django.shortcuts import get_object_or_404
+from .models import CartProducts
 
 # Create your views here.
 def cart(request):
@@ -22,9 +23,17 @@ def cart(request):
 def add(request):
     cart = get_or_create_cart(request)
     product = Product.objects.get(pk=request.POST.get('product_id'))
-    cart.products.add(product)
+    quantity = int(request.POST.get('quantity', 1))
+    
+    cart_product = CartProducts.objects.create_or_update_quantity(cart=cart, product=product, quantity=quantity)
+
+    #cart.products.add(product, through_defaults={
+    #    'quantity': quantity
+    #})
+
     return render(request, "carts/add.html", {
-        'product': product
+        'product': product,
+        'quantity': quantity
     })
 
 def remove(request):
