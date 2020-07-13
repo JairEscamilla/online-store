@@ -15,5 +15,9 @@ class ShippingAddress(models.Model):
 
     def __str__(self):
         return self.postal_code
+    
+    @property
+    def address(self):
+        return '{} - {} - {}'.format(self.city, self.state, self.country)
 
 
