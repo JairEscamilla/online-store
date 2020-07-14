@@ -13,16 +13,18 @@
             {{ address.postal_code }}
         </div>
         
-        <div class="mt-2">
-            <a href="{% url 'shipping_addresses:editar' address.pk %}" class="btn btn-info">Editar</a>
-            {% if address.default %}
-                <div class="text-info">
-                    Dirección principal
-                </div> 
-            {% else %}
-                <a href="{% url 'shipping_addresses:default' address.pk %}" class="btn btn-warning">Default</a>
-                <a href="{% url 'shipping_addresses:delete' address.pk %}" class="btn btn-danger">Eliminar</a>
-            {% endif %}
-        </div>
+        {% if edit %}
+            <div class="mt-2">
+                <a href="{% url 'shipping_addresses:editar' address.pk %}" class="btn btn-info">Editar</a>
+                {% if address.default %}
+                    <div class="text-info">
+                        Dirección principal
+                    </div> 
+                {% else %}
+                    <a href="{% url 'shipping_addresses:default' address.pk %}" class="btn btn-warning">Default</a>
+                    <a href="{% url 'shipping_addresses:delete' address.pk %}" class="btn btn-danger">Eliminar</a>
+                {% endif %}
+            </div>
+        {% endif %}
     </div>
 </div>

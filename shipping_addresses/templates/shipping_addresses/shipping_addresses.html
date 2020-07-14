@@ -9,7 +9,7 @@
         <div class="mt-2 mb-5">
             {% for address in object_list %}
             <div class="mt-2">
-                {% include "shipping_addresses/snippets/s_address.html" %}
+                {% include "shipping_addresses/snippets/s_address.html" with edit=True %}
             </div>
             {% endfor %}
         </div>

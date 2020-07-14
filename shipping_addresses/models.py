@@ -16,6 +16,9 @@ class ShippingAddress(models.Model):
     def __str__(self):
         return self.postal_code
     
+    def has_orders(self):
+        return self.order_set.count() >= 1
+
     @property
     def address(self):
         return '{} - {} - {}'.format(self.city, self.state, self.country)
