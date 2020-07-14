@@ -9,6 +9,7 @@ from shipping_addresses.models import ShippingAddress
 from django.contrib import messages
 from .utils import destroy_order
 from carts.utils import destroy_cart
+from .mails import Mail
 
 # Create your views here.
 @login_required(login_url='login')
@@ -81,5 +82,23 @@ def cancel(request):
     destroy_order(request)
 
     messages.error(request, "Orden cancelada")
+
+    return redirect("index")
+
+@login_required(login_url="login")
+def complete(request):
+    cart = get_or_create_cart(request)
+    order = get_or_create_order(cart, request)
+
+    if request.user.id != order.user_id:
+        return redirect("carts:cart")
+    
+    order.complete()
+    Mail.send_complete_order(order, request.user)
+
+    destroy_cart(request)
+    destroy_order(request)
+
+    messages.success(request, "Compra completada exitosamente")
 
     return redirect("index")

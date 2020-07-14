@@ -59,7 +59,8 @@
 
     </div>
     <div class="col">
-        {% include "orders/snippets/resume.html" %}
+        {% url 'orders:complete' as next_url %}
+        {% include "orders/snippets/resume.html" with next_url=next_url %}
         <div class="mt-2">
             <a href="{% url 'orders:cancel' %}" class="btn btn-danger">Cancelar orden</a>
         </div>

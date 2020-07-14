@@ -18,6 +18,7 @@
         </div>
     </div>
     <div class="col">
-        {% include "orders/snippets/resume.html" %}
+        {% url 'orders:address' as next_url %}
+        {% include "orders/snippets/resume.html" with next_url=next_url %}
     </div>
 {% endblock content %}

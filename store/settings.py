@@ -132,3 +132,11 @@ STATICFILES_DIRS = (
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+from decouple import config
+
+EMAIL_HOST = 'smtp.googlemail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'jairalan1406@gmail.com'
+EMAIL_HOST_PASSWORD = config("USER_MAIL_PASSWORD") # Variables de entorno
+EMAIL_USE_TLS = True
