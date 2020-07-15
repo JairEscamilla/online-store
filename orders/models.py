@@ -22,7 +22,10 @@ class Order(models.Model):
     shipping_address = models.ForeignKey(ShippingAddress, null=True, blank=True, on_delete=models.CASCADE)
     promo_code = models.OneToOneField(PromoCode, null=True, blank=True, on_delete=models.CASCADE)
     billing_profile = models.ForeignKey(BillingProfile, null=True, blank=True, on_delete=models.CASCADE)
-
+    
+    @property
+    def description(self):
+        return "Compra por ({}) productos".format(self.cart.products.count())
 
     def __str__(self):
         return self.order_id

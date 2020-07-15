@@ -30,4 +30,4 @@ class BillingProfile(models.Model):
     objects = BillingProfileManager()
 
     def __str__(self):
-        return self.cart_id
+        return self.card_id
