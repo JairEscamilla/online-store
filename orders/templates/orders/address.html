@@ -13,7 +13,7 @@
             <div>
                 {% include "shipping_addresses/snippets/s_address.html" with address=shipping_address %}
                 <div class="mt-2">
-                    <a href="{% url 'orders:confirm' %}" class="btn btn-warning">Entregar a esta dirección</a>
+                    <a href="{% url 'orders:payment' %}" class="btn btn-warning">Entregar a esta dirección</a>
                 </div>
                 {% if can_choose_address %}
                     <div class="mt-2">

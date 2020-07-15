@@ -1,0 +1,13 @@
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">{{ bp.brand }}</h5>
+        <h6 class="card-subtitle">
+            Terminación: {{ bp.last4 }}
+        </h6>
+        <div class="mt-2 text-info">
+            {% if bp.default %}
+                Tarjeta principal
+            {% endif %}
+        </div>
+    </div>
+</div>

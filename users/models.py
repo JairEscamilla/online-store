@@ -9,11 +9,18 @@ class User(AbstractUser):
 
     customer_id = models.CharField(max_length=100, blank=True, null=True)
 
+    @property
+    def billing_profiles(self):
+        return self.billingprofile_set.all().order_by("-default")
 
     @property
     def description(self):
         return "Descripción para el usuario {}".format(self.username)
 
+
+    @property
+    def billing_profile(self):
+        return self.billingprofile_set.filter(default=True).first()
 
     def get_full_name(self):
         return '{} {}'.format(self.first_name, self.last_name)

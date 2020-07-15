@@ -43,6 +43,8 @@ class Cart(models.Model):
     def order(self):
         return self.order_set.filter(status=OrderStatus.CREATED).first()
 
+    def has_products(self):
+        return self.products.exists()
 
 class CartProductsManager(models.Manager):
     def create_or_update_quantity(self, cart, product, quantity=1):

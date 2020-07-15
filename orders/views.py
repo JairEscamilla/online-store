@@ -28,6 +28,9 @@ class OrderListView(LoginRequiredMixin, ListView):
 @login_required(login_url='login')
 @validate_cart_and_order
 def order(request, cart, order):
+    if not cart.has_products():
+        return redirect("carts:cart")
+
     shipping_address = order.shipping_address
 
     return render(request, 'orders/order.html', {'cart': cart, 'order': order, 'breadcrumb': breadcrumb})
@@ -35,6 +38,9 @@ def order(request, cart, order):
 @login_required(login_url="login")
 @validate_cart_and_order
 def address(request, cart, order):
+    if not cart.has_products():
+        return redirect("carts:cart")
+
     shipping_address = order.get_or_set_shipping_address()
     can_choose_address = request.user.has_shipping_addresses()
 
@@ -64,6 +70,8 @@ def check_address(request, cart, order, pk):
 @login_required(login_url="login")
 @validate_cart_and_order
 def confirm(request, cart, order):
+    if not cart.has_products() or order.shipping_address is None or order.billing_profile is None:
+        return redirect("carts:cart")
 
     shipping_address = order.shipping_address
 
@@ -74,7 +82,7 @@ def confirm(request, cart, order):
         'cart': cart,
         'order': order,
         'shipping_address': shipping_address,
-        'breadcrumb': breadcrumb(address=True, confirmation=True)
+        'breadcrumb': breadcrumb(address=True, confirmation=True, payment=True)
     })
 
 @login_required(login_url="login")
@@ -112,3 +120,19 @@ def complete(request, cart, order):
     messages.success(request, "Compra completada exitosamente")
 
     return redirect("index")
+
+@login_required(login_url="login")
+@validate_cart_and_order
+def payment(request, cart, order):
+
+    if not cart.has_products() or order.shipping_address is None:
+        return redirect("carts:cart")
+
+    bp = order.get_or_set_billing_profile()
+
+    return render(request, 'orders/payment.html', {
+        'cart': cart,
+        'order': order, 
+        'breadcrumb': breadcrumb(address=True, payment=True),
+        'bp': bp
+    })
