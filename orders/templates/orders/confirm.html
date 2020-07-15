@@ -40,8 +40,13 @@
                             Código promocional
                         </div>
                         <form id="promocode-form" action="{% url 'promo_code:validate' %}">
-                            <input type="text" name="code" value="" class="form-control" placeholder="Código promocional">
+                            <input type="text" name="code" value="{{ order.promo_code.code }}" class="form-control" placeholder="Código promocional" {% if order.promo_code %} readonly{% endif %}>
                         </form>
+                        <div id="promocode-success" class="text-success" style="font-size: 14px;">
+                            {% if order.promo_code %}
+                                Código aplicado exitosamente
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -76,10 +81,24 @@
             const code = input.value;
 
             const url = this.action + "?code=" + code;
-            console.log(url);
+            const div_total = document.getElementById("order-total");
+            const div_success = document.getElementById("promocode-success")
+
+
             
             fetch(url).then(response => response.json()).then(response => {
-                console.log(response.total);
+                if(response.status === true){
+                    // Success
+                    div_total.innerHTML = "$" + response.total
+                    div_success.classList.remove("text-danger")
+                    div_success.classList.add("text-success")
+                    div_success.innerHTML = "Código aplicado exitosamente"
+                    input.readOnly = true
+                }else{
+                    div_success.innerHTML = "Código no válido"
+                    div_success.classList.remove("text-success")
+                    div_success.classList.add("text-danger")
+                }
             });
 
         });
