@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'carts',
     'orders',
     'shipping_addresses',
-    'promo_code'
+    'promo_code',
+    'billing_profiles'
 ]
 
 MIDDLEWARE = [
@@ -141,3 +142,9 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'jairalan1406@gmail.com'
 EMAIL_HOST_PASSWORD = config("USER_MAIL_PASSWORD") # Variables de entorno
 EMAIL_USE_TLS = True
+
+STRIPE_PUBLIC_KEY = "pk_test_51GwJI7DfEd4yvYU2dgU8VyydyJuTpNZZzUzi3CoahUpFGHCz6gRvoYVVja0oirPa0RfEgOPqjNnrXnzZfVO3JDbd00zCy0NdL7"
+
+STRIPE_PRIVATE_KEY = config("STRIPE_PRIVATE")
+
+# https://stripe.com/docs/stripe-js

@@ -3,6 +3,7 @@
 {% url 'carts:cart' as cart %}
 {% url 'shipping_addresses:shipping_addresses' as sp %}
 {% url 'orders:completed' as completed %}
+{% url 'billing_profiles:create' as billing_profiles %}
 
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
     <a href="{% url 'index' %}" class="navbar-brand">Girls boutique</a>
@@ -22,6 +23,9 @@
                 
                 <li class="nav-item {% if request.path == completed %}active{% endif %}">
                     <a href="{{ completed }}" class="nav-link">Mis pedidos <span class="fas fa-shipping-fast"></span></a>
+                </li>
+                <li class="nav-item {% if request.path == billing_profiles %}active{% endif %}">
+                    <a href="{{ billing_profiles }}" class="nav-link">Mis métodos de pago <span class="fab fa-cc-stripe"></span></a>
                 </li>
             {% endif %}
         </ul>

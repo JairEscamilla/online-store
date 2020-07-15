@@ -7,6 +7,13 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
+    {% if stripe_public_key %}
+        <meta name="stripe_public_key" content="{{ stripe_public_key }}">
+    {% endif %}
+    
+    {% block css %}
+    {% endblock css %}
 </head>
 <body>
     {% include "navbar.html" %}
