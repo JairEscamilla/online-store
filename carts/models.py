@@ -5,6 +5,7 @@ from django.db.models.signals import pre_save
 import uuid
 from django.db.models.signals import m2m_changed, post_save
 import decimal
+from orders.common import OrderStatus, choices
 
 # Create your models here.
 class Cart(models.Model):
@@ -40,7 +41,8 @@ class Cart(models.Model):
     
     @property
     def order(self):
-        return self.order_set.first()
+        return self.order_set.filter(status=OrderStatus.CREATED).first()
+
 
 class CartProductsManager(models.Manager):
     def create_or_update_quantity(self, cart, product, quantity=1):
