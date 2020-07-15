@@ -16,6 +16,7 @@ from django.db.models.query import EmptyQuerySet
 from .decorators import validate_cart_and_order
 import threading
 from charges.models import Charge
+from django.db import transaction
 # Create your views here.
 
 class OrderListView(LoginRequiredMixin, ListView):
@@ -108,19 +109,21 @@ def complete(request, cart, order):
         return redirect("carts:cart")
     
     charge = Charge.objects.create_charge(order)
-    if charge:         
-        order.complete()
+    if charge:        
 
-        thread = threading.Thread(target=Mail.send_complete_order, args = (
-            order, request.user
-        ))
+        with transaction.atomic():
+            order.complete()
 
-        thread.start()
+            thread = threading.Thread(target=Mail.send_complete_order, args = (
+                order, request.user
+            ))
 
-        destroy_cart(request)
-        destroy_order(request)
+            thread.start()
 
-        messages.success(request, "Compra completada exitosamente")
+            destroy_cart(request)
+            destroy_order(request)
+
+            messages.success(request, "Compra completada exitosamente")
 
     return redirect("index")
 
