@@ -148,3 +148,5 @@ STRIPE_PUBLIC_KEY = "pk_test_51GwJI7DfEd4yvYU2dgU8VyydyJuTpNZZzUzi3CoahUpFGHCz6g
 STRIPE_PRIVATE_KEY = config("STRIPE_PRIVATE")
 
 # https://stripe.com/docs/stripe-js
+# https://stripe.com/docs/api/customers
+# https://stripe.com/docs/testing
