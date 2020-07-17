@@ -19,7 +19,7 @@ urlpatterns = [
     path("direcciones/", include('shipping_addresses.urls')),
     path("codigos/", include("promo_code.urls")),
     path("pagos/", include("billing_profiles.urls"))
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 
 if settings.DEBUG:
