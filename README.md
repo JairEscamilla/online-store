@@ -10,7 +10,7 @@ https://onlinestore14.herokuapp.com/
 
 * [HTML5] - Lenguaje de maquetado.
 * [CSS3] - Hoja de estilos.
-* [JAVASCRIPT] - Lenguaje de programación del frontend.
+* [Javascript] - Lenguaje de programación del frontend.
 * [Bootstrap 4] - Librería de css para interfaces gráficas.
 * [Stripe] - Pasarela de pagos.
 * [Python3] - Lenguaje de programación del backend.
