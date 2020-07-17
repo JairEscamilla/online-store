@@ -41,3 +41,4 @@ psycopg2==2.7.4
 python-decouple==3.3
 gunicorn
 whitenoise
+stripe
