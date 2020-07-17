@@ -1,7 +1,7 @@
 # Online Store
 
-_Tienda en linea con pagos con tarjeta de crédito y debito_
-_Ejemplo del código ejecutandose en producción: _
+_Tienda en linea con pagos con tarjeta de crédito y débito._
+_Ejemplo del código ejecutandose en producción:_
 https://onlinestore14.herokuapp.com/
 
 
