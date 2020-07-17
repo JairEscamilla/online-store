@@ -8,8 +8,6 @@ https://onlinestore14.herokuapp.com/
 
 ## Construido con 🛠️
 
-_Menciona las herramientas que utilizaste para crear tu proyecto_
-
 * [HTML5] - Lenguaje de maquetado.
 * [CSS3] - Hoja de estilos.
 * [JAVASCRIPT] - Lenguaje de programación del frontend.
