@@ -35,7 +35,7 @@ django-js-asset==1.2.2
 django-sslserver==0.22
 django-tables2==2.3.1
 django-webpack-loader==0.7.0
-djangorestframework==3.11.0
+djangorestframework==3.11.2
 Pillow==6.2.2
 psycopg2==2.7.4
 python-decouple==3.3
